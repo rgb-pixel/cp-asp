@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+
+
+.page{
+    background-color: #e7edf3;
+    height: 710px;
+}
+.container{
+    background-color: white;
+    border-radius: 1px solid black;
+    margin: 0 80px 0 80px;
+    height: 710px;
+}
+
+.an-container{
+    display: flex;
+    flex-direction: column;
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    color: black;
+}
+.an{
+    display: flex;
+    justify-content: center;
+}
+.card{
+    margin-top: 20px;
+}
+.form-container{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+}
+    .input-field{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        padding: 20px;
+        margin-top: 30px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        box-shadow:inset -3px -3px 3px 0 rgba(0, 35, 148,.2),
+        inset 3px 3px 3px 0 rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+  
+        &:hover {
+          box-shadow: unset;
+        }
+      }

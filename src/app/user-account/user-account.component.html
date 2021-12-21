@@ -1,0 +1,88 @@
+<app-general></app-general>
+<div class="page">
+  <div class="page-container">
+<div class="container">
+
+<div class="form-container">
+  <h1>Добро пожаловать {{ username }}</h1>
+<form ngNativeValidate class="form" (ngSubmit)="addInfo()">
+    <div>
+      <div class="input-field">
+        <label for="name">Имя: </label>
+        <input id="name" type="text" name="name" [(ngModel)]="useraccountpage.userName" />
+      </div>
+      <div class="input-field">
+         <label for="email">Электронная почта: </label>
+         <input id="email"  type="text" name="email" [(ngModel)]="useraccountpage.userEmail" />
+      </div>
+      <div class="input-field">
+        <label for="city">Город: </label>
+        <input id="city"  type="text" name="city" [(ngModel)]="useraccountpage.city" />
+     </div>
+
+    </div>
+    <div class="button-container">
+      <button type="submit">Добавить информацию</button>
+    </div>
+  </form>
+</div>
+<div class="info-container">
+  <h1>Ваша текушая информация</h1>
+    <div *ngFor="let userinf of userInfoArray">
+      <div>Имя: {{ userinf.userName }}</div>
+      <div>Почта: {{ userinf.userEmail }}</div>
+      <div>Город: {{ userinf.city }}</div>
+    </div>
+</div>
+</div>
+
+
+
+<div class="carform">
+<h1>Добавление объявления</h1>
+<form ngNativeValidate class="form" (ngSubmit)="addAnnouncement()">
+  <div>
+    <div class="input-field">
+      <label for="brand">Марка: </label>
+      <input id="Brand" required placeholder="" type="text" name="Brand" [(ngModel)]="announcement.brand" />
+    </div>
+    <div class="input-field">
+      <label for="model">Модель: </label>
+      <input id="Model" required placeholder="" type="text" name="Model" [(ngModel)]="announcement.model" />
+    </div>
+    <div class="input-field">
+      <label for="price">Цена (в рублях): </label>
+      <input id="Price" required placeholder="" type="text" name="Price"  [(ngModel)]="announcement.price" />
+    </div>
+    <div class="input-field">
+      <label for="caryear">Год выпуска: </label>
+      <input id="CarYear" required placeholder="" type="text" name="CarYear" [(ngModel)]="announcement.carYear" />
+    </div>
+    <div class="input-field">
+      <label for="typeOf">Тип привода: </label>
+      <input id="TypeOf" required placeholder="" type="text" name="TypeOf" [(ngModel)]="announcement.typeOfDriverUnit" />
+    </div>
+    <div class="input-field">
+      <label for="engineCapacity">Объем двигателя (в литрах): </label>
+      <input id="EngineCapacity" required placeholder=""  type="number" min="1" max="6" step="0.1" name="EngineCapacity" [(ngModel)]="announcement.engineCapacity" />
+    </div>
+    <div class="input-field">
+      <label for="mileage">Пробег: </label>
+      <input id="Mileage" required placeholder="" type="text" name="Mileage" [(ngModel)]="announcement.mileage" />
+    </div>
+    <div class="input-field">
+      <label for="description">Описание: </label>
+      <input id="Description" required placeholder="" type="text" name="Description" [(ngModel)]="announcement.anDescription" />
+    </div>
+    <div class="input-field">
+       <label for="contacts">Контактные данные (актуальный номер телефона): </label>
+       <input id="Contacts" required placeholder=""  type="text" name="Contacts" [(ngModel)]="announcement.userPhone" />
+    </div>
+  </div>
+  <div class="button-container">
+    <button type="submit">Добавить объявление</button>
+  </div>
+</form>
+</div>
+</div>
+</div>

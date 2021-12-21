@@ -1,0 +1,69 @@
+<app-general></app-general>
+<div class="page">
+    <div class="container">
+        <div class="an">
+            <div *ngIf="role === 'user'; else adminForm">
+                <div class="an-container" *ngFor="let a of AnArray"> 
+                    <h1>Объявление о продаже {{ a.brand }}  {{ a.model }}</h1>
+                    <div class="card">Марка: {{ a.brand }}</div>
+                    <div class="card">Модель: {{ a.model }} </div>
+                    <div class="card">Цена: {{ a.price }} BYN</div>
+                    <div class="card">Год выпуска: {{ a.carYear }}</div>
+                    <div class="card">Тип привода: {{ a.typeOfDriverUnit }}</div>
+                    <div class="card">Объем двигателя: {{ a.engineCapacity }}</div>
+                    <div class="card">Пробег: {{ a.mileage }}</div>
+                    <div class="card">Описание: {{ a.anDescription }}</div>
+                    <div class="card">Контактные данные: {{ a.userPhone }}</div>
+                </div>
+            </div>
+            <ng-template #adminForm>
+                <div class="form-container" *ngFor="let a of AnArray">
+                <h1>Объявление о продаже {{brand}} {{model}}</h1>
+                <form ngNativeValidate class="form" (ngSubmit)="ChangeAnnouncement()">
+                    <div>
+                      <div class="input-field">
+                        <label for="brand">Марка: {{a.brand}}</label>
+                        <input id="Brand" required placeholder="" type="text" name="Brand" [(ngModel)]="announcement.brand" />
+                      </div>
+                      <div class="input-field">
+                        <label for="model">Модель: {{ a.model }}</label>
+                        <input id="Model" required placeholder="" type="text" name="Model" [(ngModel)]="announcement.model" />
+                      </div>
+                      <div class="input-field">
+                        <label for="price">Цена (в рублях): {{ a.price }}</label>
+                        <input id="Price" required placeholder="" type="text" name="Price"  [(ngModel)]="announcement.price" />
+                      </div>
+                      <div class="input-field">
+                        <label for="caryear">Год выпуска: {{ a.carYear }}</label>
+                        <input id="CarYear" required placeholder="" type="text" name="CarYear" [(ngModel)]="announcement.carYear" />
+                      </div>
+                      <div class="input-field">
+                        <label for="typeOf">Тип привода: {{ a.typeOfDriverUnit }}</label>
+                        <input id="TypeOf" required placeholder="" type="text" name="TypeOf" [(ngModel)]="announcement.typeOfDriverUnit" />
+                      </div>
+                      <div class="input-field">
+                        <label for="engineCapacity">Объем двигателя (в литрах): {{ a.engineCapacity }}</label>
+                        <input id="EngineCapacity" required placeholder=""  type="number" min="1" max="6" step="0.1" name="EngineCapacity" [(ngModel)]="announcement.engineCapacity" />
+                      </div>
+                      <div class="input-field">
+                        <label for="mileage">Пробег: {{ a.mileage }}</label>
+                        <input id="Mileage" required placeholder="" type="text" name="Mileage" [(ngModel)]="announcement.mileage" />
+                      </div>
+                      <div class="input-field">
+                        <label for="description">Описание: {{ a.anDescription }}</label>
+                        <input id="Description" required placeholder="" type="text" name="Description" [(ngModel)]="announcement.anDescription" />
+                      </div>
+                      <div class="input-field">
+                         <label for="contacts">Контактные данные (актуальный номер телефона): {{ a.userPhone }}</label>
+                         <input id="Contacts" required placeholder=""  type="text" name="Contacts" [(ngModel)]="announcement.userPhone" />
+                      </div>
+                    </div>
+                    <div class="button-container">
+                      <button type="submit">Изменить объявление</button>
+                    </div>
+                  </form>
+                </div>
+            </ng-template>
+        </div>
+    </div>  
+</div>

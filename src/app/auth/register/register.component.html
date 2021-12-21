@@ -1,0 +1,35 @@
+
+<div class="popup-container">
+    <div class="container">
+      <div class="popup-header">
+        <div class="popup-title">Регистрация</div>
+      </div>
+      <div class="popup-body">
+        <div>
+          <div>
+            <form ngNativeValidate class="form" (ngSubmit)="register()">
+              <div>
+                <div class="input-field">
+                  <label for="Login">Логин: </label>
+                  <input id="Login" required placeholder="Login" type="text" name="Login" [(ngModel)]="userCredentials.username"/>
+                </div>
+                <div class="input-field">
+                  <label for="Password">Пароль: </label>
+                  <input id="Password" required placeholder="Password" type="text" name="Password" [(ngModel)]="userCredentials.password"/>
+                </div>
+                <div class="error-message" *ngIf="errorMessage">{{errorMessage}}</div>
+                <div class="error-message placeholder" *ngIf="!errorMessage"></div>
+              </div>
+              <div class="button-container">
+                <button class="additional-button" (click)="goToLoginPage()">Авторизация</button>
+                <button type="submit">Регистрация</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
