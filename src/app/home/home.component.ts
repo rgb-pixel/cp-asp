@@ -49,9 +49,13 @@ export class HomeComponent implements OnInit {
     this.anId = id;
     this.brand = brandan;
     this.model = modelan;
+    console.log("brand: "+ this.brand + " model: " + this.model);
+    
     localStorage.setItem('anid', this.anId);
     localStorage.setItem('brand', this.brand);
     localStorage.setItem('model', this.model);
+
+    console.log("brand: "+ localStorage.getItem('brand') + " model: " + localStorage.getItem('model'));
     this.router.navigate(['/announce']);
   }
 

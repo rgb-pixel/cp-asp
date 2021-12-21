@@ -35,8 +35,8 @@ export class AnnouncementComponent implements OnInit {
     this.anId = localStorage.getItem('anid');
     this.role = localStorage.getItem('role');
     this.infoId = localStorage.getItem('userAcId');
-    this.brand = localStorage.getItem('brand')
-    this.model = localStorage.getItem('model')
+    this.brand = localStorage.getItem('brand');
+    this.model = localStorage.getItem('model');
     this.resourceService.getAnnouncement(this.anId).subscribe((data: any)=>{
     this.AnArray = data;
     this.announcement = data;
