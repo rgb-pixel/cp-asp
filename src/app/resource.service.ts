@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {ISimpleUser, ILoginInform, IUserInfo, IAnnouncement } from "../app/models/interfaces";
-import {Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {shareReplay } from 'rxjs/operators'
 
