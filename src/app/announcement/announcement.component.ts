@@ -28,19 +28,7 @@ export class AnnouncementComponent implements OnInit {
     userPhone: '',
     userInfoId: 0
   };
-  public databefore: IAnnouncement= {
-    id: 0, 
-    brand: '',
-    model: '',
-    price: 0,
-    carYear: 0,
-    typeOfDriverUnit: '',
-    engineCapacity: 0,
-    mileage: 0,
-    anDescription: '',
-    userPhone: '',
-    userInfoId: 0
-  };
+
   constructor(private resourceService: ResourceService) { }
 
   ngOnInit(): void {
@@ -52,9 +40,6 @@ export class AnnouncementComponent implements OnInit {
     this.resourceService.getAnnouncement(this.anId).subscribe((data: any)=>{
     this.AnArray = data;
     this.announcement = data;
-    this.databefore = data;
-    console.log(data);
-    console.log(this.announcement);
 
    });
   }
