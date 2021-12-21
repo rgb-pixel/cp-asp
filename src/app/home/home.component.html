@@ -13,7 +13,7 @@
                 <div class="brand" (click)="getAllBrands()">Очистить</div>
             </div>
             <div class="an-container">
-                <div class="card"  *ngFor="let an of AnArray" (click)="getAnnouncement(an.id, an.model, an.brand)">{{ an.brand }} {{ an.model }} {{ an.price }} BYN</div>
+                <div class="card"  *ngFor="let an of AnArray" (click)="getAnnouncement(an.id, an.brand, an.model)">{{ an.brand }} {{ an.model }} {{ an.price }} BYN</div>
             </div>
         </div>
     </div>  

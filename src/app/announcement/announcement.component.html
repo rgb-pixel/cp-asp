@@ -18,7 +18,7 @@
             </div>
             <ng-template #adminForm>
                 <div class="form-container" *ngFor="let a of AnArray">
-                <h1>Объявление о продаже {{a.brand}} {{a.model}}</h1>
+                <h1>Объявление о продаже {{brand}} {{model}}</h1>
                 <form ngNativeValidate class="form" (ngSubmit)="ChangeAnnouncement()">
                     <div>
                       <div class="input-field">
