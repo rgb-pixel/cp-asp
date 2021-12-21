@@ -43,11 +43,6 @@ export class UserAccountComponent implements OnInit {
 
     this.useraccountpage.userId = this.userid;
 
-    this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
-    this.userInfoArray = data
-    console.log(data);
-    console.log(this.userInfoArray);});
-
     console.log(this.userIdInfo);
     console.log(localStorage.getItem('userAcId'));
         
@@ -65,6 +60,11 @@ export class UserAccountComponent implements OnInit {
     console.log(user);
     this.resourceService.addNewUserInfo(user).subscribe(()=>{
 
+    });
+    this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
+      this.userInfoArray = data
+      console.log(data);
+      console.log(this.userInfoArray);
     });
   }
   public addAnnouncement(){
