@@ -8,7 +8,7 @@ import {shareReplay } from 'rxjs/operators'
 })
 export class ResourceService {
 
-  private api = 'https://localhost:44399';
+  private api = 'https://localhost:44365';
 
   constructor( private http: HttpClient ) { }
 
@@ -30,9 +30,15 @@ export class ResourceService {
   }
 
   public addNewAnnouncement(ann: any) {
-    console.log('zxc');
+    
     return this.http.post<IAnnouncement>(this.api + '/api/Announcements/', ann);
   }
+
+  public addNewPhoto(formData: FormData) {
+    console.log('zxc');
+    return this.http.post("https://api.cloudinary.com/v1_1/dap6zmhqc/image/upload", formData);
+  }
+
   public ChangeAnnouncement(cann: any){
     return this.http.put<IAnnouncement>(this.api + '/api/Announcements', cann)
   }
@@ -45,8 +51,8 @@ export class ResourceService {
     return this.http.get(this.api + '/api/UserAccounts/' + userid);
   }
 
-  public getUsersInfo() {
-    return this.http.get(this.api + '/api/UserInfoes');
+  public getUsersInfo(userAcId:any) {
+    return this.http.get(this.api + '/api/UserInfoes/' + userAcId);
   }
 
   public GetUserInfoFromId(useracid: any){
@@ -63,6 +69,10 @@ export class ResourceService {
 
   public getAnnouncement(anId: any) {
     return this.http.get(this.api + '/api/Announcements/' + anId);
+  }
+
+  public getAnnouncementArray(anId: any) {
+    return this.http.get(this.api + '/api/Announcements1/' + anId);
   }
 
   public deleteAnnouncement(anId: any){

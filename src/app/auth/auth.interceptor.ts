@@ -17,7 +17,15 @@ export class AuthInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (this.authService.isLoggedIn()) {
+    
+    if(this.authService.cloud()){
+      console.log('cloud');
+      localStorage.setItem('cloud', '')
+      return next.handle(request);
+    }
+    else if (this.authService.isLoggedIn()) {
+      console.log('qwe');
+      
       this.JWTToken = this.authService.getToken()
       const cloned = request.clone({
         headers: request.headers.set("Authorization",
@@ -25,6 +33,6 @@ export class AuthInterceptor implements HttpInterceptor {
       });
       return next.handle(cloned);
     }
-    return next.handle(request);
+    else return next.handle(request);
   }
 }

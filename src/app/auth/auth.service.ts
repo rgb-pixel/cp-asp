@@ -38,6 +38,10 @@ export class AuthService implements OnDestroy{
     localStorage.removeItem('token');
   }
 
+  public cloud(){
+    return localStorage.getItem('cloud') === 'cloud';
+  }
+
   ngOnDestroy(): void {
     this.dataSubscription.unsubscribe();
   }

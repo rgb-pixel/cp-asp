@@ -9,7 +9,7 @@
 <form ngNativeValidate class="form" (ngSubmit)="addInfo()">
     <div>
       <div class="input-field">
-        <label for="name">Имя: </label>
+        <label for="name">ФИО: </label>
         <input id="name" type="text" name="name" [(ngModel)]="useraccountpage.userName" />
       </div>
       <div class="input-field">
@@ -30,7 +30,7 @@
 <div class="info-container">
   <h1>Ваша текушая информация</h1>
     <div *ngFor="let userinf of userInfoArray">
-      <div>Имя: {{ userinf.userName }}</div>
+      <div>ФИО: {{ userinf.userName }}</div>
       <div>Почта: {{ userinf.userEmail }}</div>
       <div>Город: {{ userinf.city }}</div>
     </div>
@@ -50,6 +50,10 @@
     <div class="input-field">
       <label for="model">Модель: </label>
       <input id="Model" required placeholder="" type="text" name="Model" [(ngModel)]="announcement.model" />
+    </div>
+    <div class="input-field">
+      <label for="photo">Фотография: </label>
+      <input class="photo" id="Photo" required placeholder="" type="file" name="Photo" (change)="eventClick($event)" />
     </div>
     <div class="input-field">
       <label for="price">Цена (в рублях): </label>

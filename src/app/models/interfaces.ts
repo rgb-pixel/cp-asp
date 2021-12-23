@@ -37,6 +37,7 @@ export interface IAnnouncement{
   brand: string;
   model: string;
   price: number;
+  carImage: string;
   carYear: number;
   typeOfDriverUnit: string;
   engineCapacity: number;

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IUserInfo, IAnnouncement } from '../models/interfaces';
 import { Router } from '@angular/router';
 import { ResourceService } from '../resource.service';
+import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
 
 
 @Component({
@@ -13,12 +14,15 @@ export class UserAccountComponent implements OnInit {
   public username:any;
   public userid:any;
   public userIdInfo: any;
+  public imgCar: any;
+  public cloud: string = "cloud";
   public userInfoArray: Array<IUserInfo> = [];
   public announcement: IAnnouncement = {
     id: 0, 
     brand: '',
     model: '',
     price: 0,
+    carImage: '',
     carYear: 0,
     typeOfDriverUnit: '',
     engineCapacity: 0,
@@ -44,7 +48,12 @@ export class UserAccountComponent implements OnInit {
     this.useraccountpage.userId = this.userid;
     this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
       this.userInfoArray = data
-    });        
+    });      
+    const cld = new Cloudinary({
+      cloud: {
+        cloudName: 'dap6zmhqc'
+      }
+    });  
   }
   
   public addInfo(){
@@ -69,6 +78,7 @@ export class UserAccountComponent implements OnInit {
       "Brand": this.announcement.brand,
       "Model": this.announcement.model,
       "Price": this.announcement.price,
+      "CarImage": this.announcement.carImage,
       "CarYear": this.announcement.carYear,
       "TypeOfDriverUnit": this.announcement.typeOfDriverUnit,
       "EngineCapacity": this.announcement.engineCapacity,
@@ -77,8 +87,24 @@ export class UserAccountComponent implements OnInit {
       "UserPhone": this.announcement.userPhone,
       "UserInfoId": this.userIdInfo
     }
+ 
     console.log(car);
     this.resourceService.addNewAnnouncement(car).subscribe(()=>{
     });
+  }
+
+  public eventClick(event: any){
+    localStorage.setItem('cloud', 'cloud');
+    const file:File = event.target.files[0];
+    const formData: FormData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "e2pa0hn2");
+    this.resourceService.addNewPhoto(formData).subscribe((data: any)=>{
+    this.announcement.carImage = data.public_id;
+    });
+  }
+
+  public deleteUserInfo(){
+
   }
 }

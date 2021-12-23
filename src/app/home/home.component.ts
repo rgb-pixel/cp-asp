@@ -3,6 +3,8 @@ import { ResourceService } from '../resource.service';
 import { IBrand, ILoginInform, IAnnouncement } from '../models/interfaces';
 import {Subscription} from "rxjs";
 import { Router } from '@angular/router';
+import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
+
 
 
 @Component({
@@ -11,12 +13,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  img!: CloudinaryImage;
   public brandArray: Array<IBrand> = [];
   public AnArray: Array<IAnnouncement> = [];
   public anId: any;
   public userid:any;
   public brand:any;
   public model:any;
+  public anInfoId: any;
 
   private dataSubscription: Subscription = new Subscription();
   
@@ -25,6 +29,11 @@ export class HomeComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    const cld = new Cloudinary({
+      cloud: {
+        cloudName: 'dap6zmhqc'
+      }
+    }); 
     this.userid = localStorage.getItem('userid');
     
     this.resourceService.getBrands().subscribe((data: any)=>
@@ -33,6 +42,14 @@ export class HomeComponent implements OnInit {
     this.resourceService.getAnnouncements().subscribe((data: any)=>
     this.AnArray = data);
     
+    this.resourceService.GetUserInfoFromId(this.userid).subscribe((data: any)=>{            
+      localStorage.setItem('currentUserInfo', data);
+    }); 
+
+    this.resourceService.getAnnouncements().subscribe((data: any)=>{
+      console.log(data[1].carImage);
+      this.img = cld.image(data.carImage);
+     });
   }
 
   public getUserBrands(brand: any): void{
@@ -45,15 +62,18 @@ export class HomeComponent implements OnInit {
     this.AnArray = data);
   }
 
-  public getAnnouncement(id: any, brandan:any, modelan:any): void{
+  public getAnnouncement(id: any, brandan:any, modelan:any, aninfoid:any): void{
     this.anId = id;
     this.brand = brandan;
     this.model = modelan;
+    this.anInfoId = aninfoid;
+
     console.log("brand: "+ this.brand + " model: " + this.model);
     
     localStorage.setItem('anid', this.anId);
     localStorage.setItem('brand', this.brand);
     localStorage.setItem('model', this.model);
+    localStorage.setItem('anUserId', this.anInfoId);
 
     console.log("brand: "+ localStorage.getItem('brand') + " model: " + localStorage.getItem('model'));
     this.router.navigate(['/announce']);

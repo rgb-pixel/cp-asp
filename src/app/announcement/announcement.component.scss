@@ -4,13 +4,15 @@
 
 .page{
     background-color: #e7edf3;
-    height: 1000px;
+    min-height: 900px;
+    max-height: auto;
 }
 .container{
     background-color: white;
     border-radius: 1px solid black;
     margin: 25px 80px 0 80px;
-    height: 850px;
+    min-height: 700px;
+    max-height: auto;
 }
 
 .an-container{

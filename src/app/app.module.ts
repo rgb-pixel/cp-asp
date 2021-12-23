@@ -13,6 +13,8 @@ import { FormsModule } from "@angular/forms";
 import { AuthService } from './auth/auth.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AuthModule } from './auth/auth.module';
+import { CloudinaryModule } from '@cloudinary/ng';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { AuthModule } from './auth/auth.module';
         HttpClientModule,
         AppRoutingModule,
         AuthModule,
-        FormsModule
+        FormsModule,
+        CloudinaryModule
   ],
   providers: [
     AuthService, {
