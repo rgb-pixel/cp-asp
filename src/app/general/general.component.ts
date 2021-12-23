@@ -28,9 +28,10 @@ export class GeneralComponent implements OnInit {
   }
 
   public logout(): void {
+    localStorage.setItem('user','');
+    console.log(localStorage.getItem('user'));
     this.authService.logout();
     this.router.navigate(['/login']);
-    localStorage.setItem('user','')
   }
 
   public home(): void {

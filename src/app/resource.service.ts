@@ -61,8 +61,12 @@ export class ResourceService {
     return this.http.get(this.api + '/api/Announcements');
   }
 
-  public getAnnouncement(AnId: any) {
-    return this.http.get(this.api + '/api/Announcements/' + AnId);
+  public getAnnouncement(anId: any) {
+    return this.http.get(this.api + '/api/Announcements/' + anId);
+  }
+
+  public deleteAnnouncement(anId: any){
+    return this.http.delete(this.api + '/api/Announcements/' + anId);
   }
 
   public getUserBrands(BrandName: any) {

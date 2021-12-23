@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ResourceService } from '../resource.service';
 import { IBrand, ILoginInform, IAnnouncement } from '../models/interfaces';
 import {Subscription} from "rxjs";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-announcement',
@@ -29,21 +30,23 @@ export class AnnouncementComponent implements OnInit {
     userInfoId: 0
   };
 
-  constructor(private resourceService: ResourceService) { }
+  constructor(private resourceService: ResourceService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.anId = localStorage.getItem('anid');
     this.role = localStorage.getItem('role');
+    console.log(this.role);
     this.infoId = localStorage.getItem('userAcId');
     this.brand = localStorage.getItem('brand');
     this.model = localStorage.getItem('model');
     this.resourceService.getAnnouncement(this.anId).subscribe((data: any)=>{
     this.AnArray = data;
     this.announcement = data;
-
    });
+   
   }
-  public ChangeAnnouncement(){
+  public ChangeAnnouncement(): void{
     const car ={
       "Id": this.anId,
       "Brand": this.announcement.brand,
@@ -60,5 +63,10 @@ export class AnnouncementComponent implements OnInit {
     console.log(car);
     this.resourceService.ChangeAnnouncement(car).subscribe(()=>{
     });
+  }
+  public deleteAnnouncement(): void{
+    this.resourceService.deleteAnnouncement(this.anId).subscribe(()=>{
+    });
+    this.router.navigate(['**']);
   }
 }

@@ -4,13 +4,13 @@
 
 .page{
     background-color: #e7edf3;
-    height: 710px;
+    height: 1000px;
 }
 .container{
     background-color: white;
     border-radius: 1px solid black;
-    margin: 0 80px 0 80px;
-    height: 710px;
+    margin: 25px 80px 0 80px;
+    height: 850px;
 }
 
 .an-container{
@@ -26,36 +26,49 @@
     justify-content: center;
 }
 .card{
-    margin-top: 20px;
+    margin-top: 10px;
+}
+.before-container{
+    display: flex;
+    flex-direction: column;
 }
 .form-container{
-
+        font-family: Montserrat, sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        color: black;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
+        flex-wrap: wrap;
 }
-    .input-field{
+.input-field{
         display: flex;
         justify-content: space-between;
-    }
+        margin-top: 10px;
+}
 
-    button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 30px;
-        padding: 20px;
-        margin-top: 30px;
-        border: none;
-        border-radius: 5px;
-        font-size: 14px;
-        font-weight: bold;
-        box-shadow:inset -3px -3px 3px 0 rgba(0, 35, 148,.2),
-        inset 3px 3px 3px 0 rgba(255, 255, 255, 0.5);
-        cursor: pointer;
-  
-        &:hover {
-          box-shadow: unset;
-        }
-      }
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    padding: 20px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow:inset -3px -3px 3px 0 rgba(0, 35, 148,.2),
+    inset 3px 3px 3px 0 rgba(255, 255, 255, 0.5);
+    cursor: pointer;    
+    &:hover {
+      box-shadow: unset;
+    }
+}
+
+.button-container{
+    display: flex;
+    justify-content: space-around;
+}
