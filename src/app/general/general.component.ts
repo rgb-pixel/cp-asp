@@ -28,7 +28,7 @@ export class GeneralComponent implements OnInit {
   }
 
   public logout(): void {
-    localStorage.clear();
+    
     localStorage.setItem('user','');
     console.log(localStorage.getItem('user'));
     this.authService.logout();
