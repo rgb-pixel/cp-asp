@@ -20,7 +20,8 @@
         <label for="city">Город: </label>
         <input id="city"  type="text" name="city" [(ngModel)]="useraccountpage.city" />
      </div>
-
+     <div class="error-message" *ngIf="isInvalidAddInfo">Иформация уже добавлена</div>
+     <div class="error-message placeholder" *ngIf="!isInvalidAddInfo"></div>
     </div>
     <div class="button-container">
       <button type="submit">Добавить информацию</button>
@@ -33,6 +34,9 @@
       <div>ФИО: {{ userinf.userName }}</div>
       <div>Почта: {{ userinf.userEmail }}</div>
       <div>Город: {{ userinf.city }}</div>
+      <button (click)="deleteUserInfo(userIdInfo)">Удалить текущую информацию</button>
+      <div class="error-message" *ngIf="isInvalidDelete">Сначала удалите все свои объявления</div>
+      <div class="error-message placeholder" *ngIf="!isInvalidDelete"></div>
     </div>
 </div>
 </div>
@@ -83,6 +87,8 @@
        <label for="contacts">Контактные данные (актуальный номер телефона): </label>
        <input id="Contacts" required placeholder=""  type="text" name="Contacts" [(ngModel)]="announcement.userPhone" />
     </div>
+    <div class="error-message" *ngIf="isInvalidAdd">Сначала добавьте инофрмацию о себе</div>
+    <div class="error-message placeholder" *ngIf="!isInvalidAdd"></div>
   </div>
   <div class="button-container">
     <button type="submit">Добавить объявление</button>

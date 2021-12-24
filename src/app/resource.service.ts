@@ -63,6 +63,14 @@ export class ResourceService {
     return this.http.get(this.api + '/api/GetUserInfo?id=' + userUnfoId);
   }
 
+  public updateUserInfo(id: any) {
+    return this.http.put(this.api + '/api/UserInfoes/', id);
+  }
+
+  public deleteUserInfo(id: any) {
+    return this.http.delete(this.api + '/api/UserInfoes/' + id);
+  }
+
   public getAnnouncements() {
     return this.http.get(this.api + '/api/Announcements');
   }

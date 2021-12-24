@@ -38,16 +38,23 @@ export class UserAccountComponent implements OnInit {
     city: '',
     userId: 0
   }
+  public isInvalidAdd: boolean = false;
+  public isInvalidAddInfo:boolean = false;
+  public isInvalidDelete: boolean = false;
+  public isInvalidPut: boolean = false;
+  
+
+
   constructor(private resourceService: ResourceService,) { }
 
   ngOnInit(): void {
     this.username = localStorage.getItem('user');
     this.userid = localStorage.getItem('userid');
-    this.userIdInfo = localStorage.getItem('userAcId');
+    this.userIdInfo = localStorage.getItem('currentUserInfo');
 
     this.useraccountpage.userId = this.userid;
-    this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
-      this.userInfoArray = data
+    this.resourceService.getUserInfo(this.userIdInfo).subscribe((data: any)=>{
+      this.userInfoArray = data;
     });      
     const cld = new Cloudinary({
       cloud: {
@@ -68,9 +75,14 @@ export class UserAccountComponent implements OnInit {
     console.log(user);
     this.resourceService.addNewUserInfo(user).subscribe(()=>{
 
+    },
+    error => {
+    if (error.status) {
+      this.isInvalidAddInfo = true;
+    }
     });
     this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
-      this.userInfoArray = data
+      this.userInfoArray = data;
     });
   }
   public addAnnouncement(){
@@ -90,6 +102,11 @@ export class UserAccountComponent implements OnInit {
  
     console.log(car);
     this.resourceService.addNewAnnouncement(car).subscribe(()=>{
+    },
+    error => {
+    if (error) {
+      this.isInvalidAdd = true;
+    }
     });
   }
 
@@ -104,7 +121,27 @@ export class UserAccountComponent implements OnInit {
     });
   }
 
-  public deleteUserInfo(){
+  public deleteUserInfo(id:any){
+    this.resourceService.deleteUserInfo(id).subscribe(()=>{},
+    error => {
+      if (error) {
+        this.isInvalidDelete = true;
+      }
+      });
+      this.resourceService.getUserInfo(this.userIdInfo).subscribe((data: any)=>{
+        this.userInfoArray = data;
+      });
+  }
 
+  public updateUserInfo(id:any){
+    this.resourceService.ChangeUserInfo(id).subscribe(()=>{},
+    error => {
+      if (error) {
+        this.isInvalidPut = true;
+      }
+      });
+      this.resourceService.getUserInfo(this.userIdInfo).subscribe((data: any)=>{
+        this.userInfoArray = data;
+      });
   }
 }

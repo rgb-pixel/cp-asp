@@ -5,7 +5,9 @@
           <div *ngIf="canChange == false; else adminForm">
                 <div class="an-container" *ngFor="let a of AnArray"> 
                     <h1>Объявление о продаже {{ a.brand }}  {{ a.model }}</h1>
-                    <advanced-image [cldImg]="img"></advanced-image>
+                    <div class="Image" >
+                    <advanced-image class="Image" [cldImg]="img"></advanced-image>
+                    </div>  
                     <div class="card">Марка: {{ a.brand }}</div>
                     <div class="card">Модель: {{ a.model }} </div>
                     <div class="card">Цена: {{ a.price }} BYN</div>
@@ -29,7 +31,9 @@
                   <div class="before-container">
                       <h3>Текущее объявление:</h3>
                     <div class="an-container">
-                      <advanced-image [cldImg]="img"></advanced-image>
+                      <div class="Image" >
+                      <advanced-image class="Image" [cldImg]="img"></advanced-image>
+                      </div>
                       <div class="card">Марка: {{ a.brand }}</div>
                       <div class="card">Модель: {{ a.model }} </div>
                       <div class="card">Цена: {{ a.price }} BYN</div>
@@ -88,6 +92,8 @@
                                <label for="contacts">Контактные данные (актуальный номер телефона): </label>
                                <input id="Contacts" required placeholder=""  type="text" name="Contacts" [(ngModel)]="announcement.userPhone" />
                             </div>
+                            <div class="error-message" *ngIf="isInvalidChange">Невозможно изменить объявление</div>
+                            <div class="error-message placeholder" *ngIf="!isInvalidChange"></div>
                           </div>
                         <div class="button-container">
                       <button type="submit">Изменить объявление</button>
