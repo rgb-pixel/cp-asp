@@ -16,13 +16,16 @@ export class HomeComponent implements OnInit {
   img!: CloudinaryImage;
   public brandArray: Array<IBrand> = [];
   public AnArray: Array<IAnnouncement> = [];
+  public myArray: Array<IAnnouncement> = [];
   public anId: any;
   public userid:any;
   public brand:any;
   public model:any;
   public anInfoId: any;
+  public myAnId: any;
+  public myAnnouncement: boolean = false;
 
-  private dataSubscription: Subscription = new Subscription();
+
   
   constructor(private resourceService: ResourceService,
     private router: Router
@@ -35,6 +38,7 @@ export class HomeComponent implements OnInit {
       }
     }); 
     this.userid = localStorage.getItem('userid');
+    this.myAnId = localStorage.getItem('currentUserInfo');
     
     this.resourceService.getBrands().subscribe((data: any)=>
     this.brandArray = data);
@@ -55,11 +59,13 @@ export class HomeComponent implements OnInit {
   public getUserBrands(brand: any): void{
     this.resourceService.getUserBrands(brand).subscribe((data: any)=>
     this.AnArray = data);
+    this.myAnnouncement = false;
   }
 
   public getAllBrands(): void{
     this.resourceService.getAnnouncements().subscribe((data: any)=>
     this.AnArray = data);
+    this.myAnnouncement = false;
   }
 
   public getAnnouncement(id: any, brandan:any, modelan:any, aninfoid:any): void{
@@ -77,6 +83,13 @@ export class HomeComponent implements OnInit {
 
     console.log("brand: "+ localStorage.getItem('brand') + " model: " + localStorage.getItem('model'));
     this.router.navigate(['/announce']);
+  }
+
+  public getMyAnnouncements(id: any){
+    this.myAnnouncement = true;
+    this.resourceService.getMyAnnouncements(id).subscribe((data: any)=>
+    this.myArray = data);
+    
   }
 
 }

@@ -11,13 +11,23 @@
             <div class="brand-container">
                 <div class="brand" *ngFor="let brand of brandArray" (click) = "getUserBrands(brand)">{{ brand }}</div>
                 <div class="brand" (click)="getAllBrands()">Очистить</div>
+                <div class="brand" (click)="getMyAnnouncements(myAnId)">Мои объявления</div>
             </div>
-            <div class="an-container">
+            
+            <div class="an-container" *ngIf="!myAnnouncement; else myAn">
                 <div class="card"  *ngFor="let an of AnArray" (click)="getAnnouncement(an.id, an.brand, an.model, an.userInfoId)">
                     <div>{{ an.brand }}  {{ an.model }} </div>
                     <div>{{ an.price }} BYN</div>
                 </div>
             </div>
+            <ng-template #myAn >
+                <div class="an-container">
+                <div class="card"  *ngFor="let an of myArray" (click)="getAnnouncement(an.id, an.brand, an.model, an.userInfoId)">
+                    <div>{{ an.brand }}  {{ an.model }} </div>
+                    <div>{{ an.price }} BYN</div>
+                </div>
+                </div>
+            </ng-template>
         </div>
     </div>  
 </div>

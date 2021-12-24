@@ -79,6 +79,10 @@ export class ResourceService {
     return this.http.get(this.api + '/api/Announcements/' + anId);
   }
 
+  public getMyAnnouncements(anId: any) {
+    return this.http.get(this.api + '/api/authOption/' + anId);
+  }
+
   public getAnnouncementArray(anId: any) {
     return this.http.get(this.api + '/api/Announcements1/' + anId);
   }
