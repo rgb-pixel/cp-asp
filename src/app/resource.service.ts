@@ -35,7 +35,6 @@ export class ResourceService {
   }
 
   public addNewPhoto(formData: FormData) {
-    console.log('zxc');
     return this.http.post("https://api.cloudinary.com/v1_1/dap6zmhqc/image/upload", formData);
   }
 

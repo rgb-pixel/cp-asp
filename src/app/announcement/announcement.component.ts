@@ -111,6 +111,8 @@ export class AnnouncementComponent implements OnInit {
     this.router.navigate(['**']);
   }
 
-  
+  public copyToClipBoard(unfoToClipBoard: any){
+    navigator.clipboard.writeText(unfoToClipBoard);
+  }
   
 }
