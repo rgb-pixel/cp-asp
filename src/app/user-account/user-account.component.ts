@@ -56,6 +56,8 @@ export class UserAccountComponent implements OnInit {
     this.useraccountpage.userId = this.userid;
     this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
       this.userInfoArray = data;
+      console.log(this.userInfoArray);
+      if(this.userInfoArray!=null)this.canAddAn = true;
     });      
     const cld = new Cloudinary({
       cloud: {
