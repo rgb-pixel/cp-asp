@@ -5,6 +5,7 @@ import { ResourceService } from '../resource.service';
 import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
 
 
+
 @Component({
   selector: 'app-user-account',
   templateUrl: './user-account.component.html',
@@ -51,7 +52,9 @@ export class UserAccountComponent implements OnInit {
   ngOnInit(): void {
     this.username = localStorage.getItem('user');
     this.userid = localStorage.getItem('userid');
-    this.userIdInfo = localStorage.getItem('currentUserInfo');
+    this.resourceService.GetUserInfoFromId(this.userid).subscribe((data: any)=>{            
+      localStorage.setItem('currentUserInfo', data);
+    }); 
 
     this.useraccountpage.userId = this.userid;
     this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
@@ -64,15 +67,14 @@ export class UserAccountComponent implements OnInit {
         cloudName: 'dap6zmhqc'
       }
     });  
+    this.userIdInfo = localStorage.getItem('currentUserInfo');
   }
   
-  public updateInfo(){
-    this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
-      this.userInfoArray = data;
-    });
-  }
-  public addInfo(){
+
     
+  
+  public addInfo(){
+    this.userIdInfo = localStorage.getItem('currentUserInfo');
     const user = {
       "UserName": this.useraccountpage.userName,
       "UserEmail": this.useraccountpage.userEmail,
@@ -81,17 +83,34 @@ export class UserAccountComponent implements OnInit {
     }
     
     console.log(user);
-    this.resourceService.addNewUserInfo(user).subscribe(()=>{
-
-    },
+    this.resourceService.addNewUserInfo(user).subscribe(()=>{},
     error => {
     if (error.status) {
       this.isInvalidAddInfo = true;
     }
     });
 
-    setTimeout(this.updateInfo, 1500);
-    
+    setTimeout(() =>
+      {
+        this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
+          this.userInfoArray = data;
+          this.canAddAn = true;
+        },error => {
+          if (error) {
+            this.userInfoArray = [];
+            this.canAddAn = false;
+          }
+          });
+      }, 2000);
+
+      setTimeout(() =>
+      {
+        this.resourceService.GetUserInfoFromId(this.userid).subscribe((data: any)=>{            
+          localStorage.setItem('currentUserInfo', data);
+        }); 
+      }, 2000);
+
+      
   }
 
   public addAnnouncement(){
@@ -130,16 +149,25 @@ export class UserAccountComponent implements OnInit {
     });
   }
 
-  public deleteUserInfo(id:any){
-    this.resourceService.deleteUserInfo(id).subscribe(()=>{},
+  public deleteUserInfo(){
+    this.userIdInfo = localStorage.getItem('currentUserInfo');
+    this.resourceService.deleteUserInfo(this.userIdInfo).subscribe(()=>{},
     error => {
       if (error) {
         this.isInvalidDelete = true;
       }
       });
-      this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
-        this.userInfoArray = data;
-      });
+      setTimeout(() =>
+      {
+        this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{},error => {
+          if (error) {
+            this.userInfoArray = [];
+            this.canAddAn = false;
+          }
+          });
+      }, 2000);
+
+      
   }
 
 }
