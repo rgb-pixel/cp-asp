@@ -63,6 +63,11 @@ export class UserAccountComponent implements OnInit {
     });  
   }
   
+  public updateInfo(){
+    this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
+      this.userInfoArray = data;
+    });
+  }
   public addInfo(){
     
     const user = {
@@ -81,10 +86,10 @@ export class UserAccountComponent implements OnInit {
       this.isInvalidAddInfo = true;
     }
     });
-    this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
-      this.userInfoArray = data;
-    });
+    setTimeout(this.updateInfo, 1500);
+    
   }
+
   public addAnnouncement(){
     const car ={
       "Brand": this.announcement.brand,
@@ -133,15 +138,4 @@ export class UserAccountComponent implements OnInit {
       });
   }
 
-  public updateUserInfo(id:any){
-    this.resourceService.ChangeUserInfo(id).subscribe(()=>{},
-    error => {
-      if (error) {
-        this.isInvalidPut = true;
-      }
-      });
-      this.resourceService.getUserInfo(this.userIdInfo).subscribe((data: any)=>{
-        this.userInfoArray = data;
-      });
-  }
 }
