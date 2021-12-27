@@ -16,7 +16,7 @@
                     <div class="card">Объем двигателя: {{ a.engineCapacity }}</div>
                     <div class="card">Пробег: {{ a.mileage }}</div>
                     <div class="card">Описание: {{ a.anDescription }}</div>
-                    <div class="card">Контактные данные: {{ a.userPhone }}</div><img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(a.userPhone)" class="img-copy">
+                    <div class="card">Контактные данные: {{ a.userPhone }} <img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(a.userPhone)" class="img-copy"></div>
                     <div *ngFor="let info of userInfo">
                       <div class="card">ФИО: {{info.userName}}</div>
                       <div class="card">Почта: {{info.userEmail}} </div><img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(info.userEmail)" class="img-copy">
@@ -42,7 +42,7 @@
                       <div class="card">Объем двигателя: {{ a.engineCapacity }}</div>
                       <div class="card">Пробег: {{ a.mileage }}</div>
                       <div class="card">Описание: {{ a.anDescription }}</div>
-                      <div class="card">Контактные данные: {{ a.userPhone }}</div><img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(a.userPhone)" class="img-copy">
+                      <div class="card">Контактные данные: {{ a.userPhone }} <img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(a.userPhone)" class="img-copy"></div>
                       <div *ngFor="let info of userInfo">
                         <div class="card">ФИО: {{info.userName}}</div>
                         <div class="card">Почта: {{info.userEmail}} </div><img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(info.userEmail)" class="img-copy">
@@ -62,7 +62,7 @@
                             </div>
                             <div class="input-field">
                               <label for="photo">Фотография: </label>
-                              <input class="photo" id="Photo" required placeholder="" type="file" name="Photo" (change)="eventClick($event)" />
+                              <input class="photo" id="Photo" required placeholder="" type="file" name="Photo" (change)="eventClick($event)" [(ngModel)]="announcement.carImage"/>
                             </div>
                             <div class="input-field">
                               <label for="price">Цена (в рублях): </label>
