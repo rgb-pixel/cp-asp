@@ -42,10 +42,10 @@
                       <div class="card">Объем двигателя: {{ a.engineCapacity }}</div>
                       <div class="card">Пробег: {{ a.mileage }}</div>
                       <div class="card">Описание: {{ a.anDescription }}</div>
-                      <div class="card">Контактные данные: {{ a.userPhone }}</div>
+                      <div class="card">Контактные данные: {{ a.userPhone }}</div><img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(a.userPhone)">
                       <div *ngFor="let info of userInfo">
                         <div class="card">ФИО: {{info.userName}}</div>
-                        <div class="card">Почта: {{info.userEmail}} </div>
+                        <div class="card">Почта: {{info.userEmail}} </div><img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(info.userEmail)">
                         <div class="card">Город: {{info.city}} </div>
                       </div>
                     </div>
