@@ -65,11 +65,11 @@ export class UserAccountComponent implements OnInit {
     });  
   }
   
-  public updateInfo(){
-    this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
-      this.userInfoArray = data;
-    });
-  }
+  // public updateInfo(){
+  //   this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
+  //     this.userInfoArray = data;
+  //   });
+  // }
   public addInfo(){
     
     const user = {
@@ -88,7 +88,8 @@ export class UserAccountComponent implements OnInit {
       this.isInvalidAddInfo = true;
     }
     });
-    setTimeout(this.updateInfo, 1500);
+
+    // setTimeout(this.updateInfo, 1500);
     
   }
 
@@ -135,7 +136,7 @@ export class UserAccountComponent implements OnInit {
         this.isInvalidDelete = true;
       }
       });
-      this.resourceService.getUserInfo(this.userIdInfo).subscribe((data: any)=>{
+      this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
         this.userInfoArray = data;
       });
   }
