@@ -42,6 +42,7 @@ export class UserAccountComponent implements OnInit {
   public isInvalidAddInfo:boolean = false;
   public isInvalidDelete: boolean = false;
   public isInvalidPut: boolean = false;
+  public canAddAn: boolean = false;
   
 
 
@@ -55,6 +56,7 @@ export class UserAccountComponent implements OnInit {
     this.useraccountpage.userId = this.userid;
     this.resourceService.getUserInfo(this.userIdInfo).subscribe((data: any)=>{
       this.userInfoArray = data;
+      console.log(data);
     });      
     const cld = new Cloudinary({
       cloud: {

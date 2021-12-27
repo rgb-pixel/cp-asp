@@ -15,7 +15,6 @@ export class GeneralComponent implements OnInit {
   userId: number = 0;
   userLogin: any = "";
   
-  private dataSubscription: Subscription = new Subscription();
 
   constructor(
     private resourceService: ResourceService,
