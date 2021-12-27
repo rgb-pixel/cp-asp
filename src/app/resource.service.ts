@@ -55,7 +55,7 @@ export class ResourceService {
   }
 
   public GetUserInfoFromId(useracid: any){
-    return this.http.get(this.api + '/api/GetUserInfoFromId?id=' + useracid);
+    return this.http.get(this.api + '/api/GetUserInfoFromId/' + useracid);
   }
 
   public getUserInfo(userUnfoId: any) {
