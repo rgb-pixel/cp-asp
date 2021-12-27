@@ -43,7 +43,7 @@
 
 
 
-<div class="carform" *ngIf="canAddAn;else addInfo">
+<div class="carform" *ngIf="canAddAn;else cantAdd">
 <h1>Добавление объявления</h1>
 <form ngNativeValidate class="form" (ngSubmit)="addAnnouncement()">
   <div>
@@ -95,8 +95,6 @@
   </div>
 </form>
 </div>
-<ng-template #addInfo>
-  <div>Добавте информацию о себе</div>
-</ng-template>
+<ng-template #cantAdd></ng-template>
 </div>
 </div>
