@@ -54,7 +54,7 @@ export class UserAccountComponent implements OnInit {
     this.userIdInfo = localStorage.getItem('currentUserInfo');
 
     this.useraccountpage.userId = this.userid;
-    this.resourceService.getUserInfo(this.userIdInfo).subscribe((data: any)=>{
+    this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
       this.userInfoArray = data;
       console.log(data);
     });      
