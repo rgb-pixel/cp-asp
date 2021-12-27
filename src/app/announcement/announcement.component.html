@@ -19,7 +19,7 @@
                     <div class="card">Контактные данные: {{ a.userPhone }} <img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(a.userPhone)" class="img-copy"></div>
                     <div *ngFor="let info of userInfo">
                       <div class="card">ФИО: {{info.userName}}</div>
-                      <div class="card">Почта: {{info.userEmail}} </div><img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(info.userEmail)" class="img-copy">
+                      <div class="card">Почта: {{info.userEmail}} <img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(info.userEmail)" class="img-copy"></div>
                       <div class="card">Город: {{info.city}} </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                       <div class="card">Контактные данные: {{ a.userPhone }} <img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(a.userPhone)" class="img-copy"></div>
                       <div *ngFor="let info of userInfo">
                         <div class="card">ФИО: {{info.userName}}</div>
-                        <div class="card">Почта: {{info.userEmail}} </div><img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(info.userEmail)" class="img-copy">
+                        <div class="card">Почта: {{info.userEmail}} <img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(info.userEmail)" class="img-copy"></div>
                         <div class="card">Город: {{info.city}} </div>
                       </div>
                     </div>
