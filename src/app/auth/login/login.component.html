@@ -1,4 +1,19 @@
-<app-general></app-general>
+<div class="container">
+  <div class="logo-container">
+      <div class="img-logo">
+          <img src="/assets/icons/free-icon-car-846296.png" alt="" height ="80px" width=" 80px" (click)="home()">
+      </div>
+      <div class="logo-name">SellCar service</div>
+  </div>
+  <div class="user-container">
+      <div class="user-name">
+          <div>User: </div>
+          <div> {{ userLogin }}</div>
+      </div>
+      <img src="/assets/icons/user.png" alt="" height ="60px" width=" 60px" style="padding-top: 10px; cursor: pointer;" (click)="account()">
+      <div class="user-logout"><img class="img-logout" src="/assets/icons/log-out.png" alt="" height ="40px" width=" 40px"  (click)="logout()"></div>
+  </div>
+</div>
 <div class="popup-container">
     <div class="container">
       <div class="popup-header">
@@ -30,6 +45,3 @@
       </div>
     </div>
   </div>
-  
-  
-  

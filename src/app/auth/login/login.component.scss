@@ -79,3 +79,44 @@
     display: flex;
     justify-content: space-around;
 }
+
+button{
+  cursor: pointer;
+}
+.container{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 0 0;
+  height: 80px;
+  background-color: deepskyblue;
+}
+
+.img-logout{
+  height: 80px;
+  width: 80px;
+  cursor: pointer;
+}
+.img-logo{
+  cursor: pointer;
+}
+
+.user-container{
+  display: flex;
+  padding-right: 100px;
+}
+
+.logo-container{
+  display: flex;
+  padding-left: 100px;
+  
+}
+.logo-name{
+  padding-top: 30px;
+  padding-left: 20px;
+}
+
+.user-name{
+  display: flex;
+  padding-top: 30px;
+  padding-right: 20px;
+}

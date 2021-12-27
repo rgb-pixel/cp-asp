@@ -6,12 +6,16 @@ import {Router} from "@angular/router";
 import { GeneralComponent } from 'src/app/general/general.component';
 import { SelectMultipleControlValueAccessor } from '@angular/forms';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  
+  userId: number = 0;
+  userLogin: any = "";
 
   public userAcId: any;
   public userloginpage: ISimpleUser = {
@@ -66,5 +70,20 @@ export class LoginComponent implements OnInit {
   public goToRegistrationPage(): void {
     this.router.navigate(['/register']);
   }
+  public logout(): void {
+    
+    localStorage.setItem('user','');
+    console.log(localStorage.getItem('user'));
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 
+  public home(): void {
+    this.router.navigate(['**']);
+  }
+
+  public account(): void {
+    
+    this.router.navigate(['/account']);
+  }
 }

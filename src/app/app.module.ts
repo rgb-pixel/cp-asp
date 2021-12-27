@@ -39,6 +39,7 @@ import { CloudinaryModule } from '@cloudinary/ng';
       multi: true,
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [GeneralComponent]
 })
 export class AppModule { }

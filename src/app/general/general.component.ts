@@ -6,7 +6,7 @@ import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-general',
+  selector: 'general-comp',
   templateUrl: './general.component.html',
   styleUrls: ['./general.component.scss']
 })
