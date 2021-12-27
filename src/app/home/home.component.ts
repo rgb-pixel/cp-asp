@@ -14,7 +14,6 @@ import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
 })
 export class HomeComponent implements OnInit {
   img!: CloudinaryImage;
-  imgArray: Array<CloudinaryImage> = []
   public brandArray: Array<IBrand> = [];
   public AnArray: Array<IAnnouncement> = [];
   public myArray: Array<IAnnouncement> = [];
@@ -50,12 +49,6 @@ export class HomeComponent implements OnInit {
     this.resourceService.GetUserInfoFromId(this.userid).subscribe((data: any)=>{            
       localStorage.setItem('currentUserInfo', data);
     }); 
-
-    this.resourceService.getAnnouncements().subscribe((data: any)=>{
-      console.log(data[1].carImage);
-      this.imgArray = data.carImage;
-      console.log(this.imgArray);
-     });
   }
 
   public getUserBrands(brand: any): void{
