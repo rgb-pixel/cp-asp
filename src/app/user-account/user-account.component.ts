@@ -108,12 +108,13 @@ export class UserAccountComponent implements OnInit {
         this.resourceService.GetUserInfoFromId(this.userid).subscribe((data: any)=>{            
           localStorage.setItem('currentUserInfo', data);
         }); 
-      }, 2000);
+      }, 1500);
 
       
   }
 
   public addAnnouncement(){
+    this.userIdInfo = localStorage.getItem('currentUserInfo');
     const car ={
       "Brand": this.announcement.brand,
       "Model": this.announcement.model,
@@ -165,7 +166,7 @@ export class UserAccountComponent implements OnInit {
             this.canAddAn = false;
           }
           });
-      }, 2000);
+      }, 1500);
 
       
   }

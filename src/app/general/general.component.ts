@@ -35,7 +35,7 @@ export class GeneralComponent implements OnInit {
   }
 
   public home(): void {
-    this.router.navigate(['**']);
+    this.router.navigate(['*']);
   }
 
   public account(): void {

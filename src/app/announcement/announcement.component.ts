@@ -108,7 +108,7 @@ export class AnnouncementComponent implements OnInit {
   public deleteAnnouncement(): void{
     this.resourceService.deleteAnnouncement(this.anId).subscribe(()=>{
     });
-    this.router.navigate(['**']);
+    this.router.navigate(['*']);
   }
 
   public copyToClipBoard(unfoToClipBoard: any){

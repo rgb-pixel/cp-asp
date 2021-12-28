@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
           console.log(localStorage.getItem('userAcId'));
         }
         );
-        this.router.navigate(['/']);
+        this.router.navigate(['/*']);
         
         
         console.log(localStorage.getItem('userid')); 
@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
   }
 
   public home(): void {
-    this.router.navigate(['**']);
+    this.router.navigate(['*']);
   }
 
   public account(): void {
