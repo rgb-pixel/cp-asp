@@ -15,6 +15,7 @@ h1{
 .contaiber{
     margin-bottom: 10px;
     margin-top: 20px;
+    
 }
 
 .main-container{
@@ -25,9 +26,8 @@ h1{
     max-height: auto;
 }
 .home-container{
-    border-left: solid 1px;
-    border-right: solid 1px;
-    border-bottom: solid 1px;
+    border-radius: 20px;
+    border: solid 1px;
     margin: 0px 80px 30px 80px;
     background-color: white;
     height: auto;
