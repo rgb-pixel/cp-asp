@@ -93,7 +93,7 @@
                                <input id="Contacts" required placeholder=""  type="text" name="Contacts" [(ngModel)]="announcement.userPhone" />
                             </div>
                             <div class="error-message" *ngIf="isInvalidChange">Невозможно изменить объявление</div>
-                            <div class="error-message placeholder" *ngIf="!isInvalidChange"></div>
+                            <div class="noerror-message" *ngIf="isChange">Изменено</div>
                           </div>
                         <div class="button-container">
                       <button type="submit">Изменить объявление</button>

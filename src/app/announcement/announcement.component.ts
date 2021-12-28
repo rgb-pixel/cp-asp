@@ -37,6 +37,7 @@ export class AnnouncementComponent implements OnInit {
     userInfoId: 0
   };
   isInvalidChange: boolean = false;
+  isChange: boolean = false;
 
   constructor(private resourceService: ResourceService,
     private router: Router) { }
@@ -97,6 +98,7 @@ export class AnnouncementComponent implements OnInit {
     }
     console.log(car);
     this.resourceService.ChangeAnnouncement(car).subscribe(()=>{
+      this.isChange = true;
     },
       error => {
       if (error) {
