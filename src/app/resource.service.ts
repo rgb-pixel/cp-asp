@@ -8,7 +8,7 @@ import {shareReplay } from 'rxjs/operators'
 })
 export class ResourceService {
 
-  private api = 'https://localhost:44365';
+  private api = 'http://kpaspng.somee.com';
 
   constructor( private http: HttpClient ) { }
 

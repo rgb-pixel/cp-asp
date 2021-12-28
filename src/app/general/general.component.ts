@@ -29,7 +29,8 @@ export class GeneralComponent implements OnInit {
   public logout(): void {
     
     localStorage.setItem('user','');
-    console.log(localStorage.getItem('user'));
+    localStorage.setItem('currentUserInfo','');
+    localStorage.setItem('userid','');
     this.authService.logout();
     this.router.navigate(['/login']);
   }

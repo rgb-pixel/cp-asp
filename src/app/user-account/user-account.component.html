@@ -89,6 +89,8 @@
     </div>
     <div class="error-message" *ngIf="isInvalidAdd">Сначала добавьте инофрмацию о себе</div>
     <div class="error-message placeholder" *ngIf="!isInvalidAdd"></div>
+    <div class="noerror-message" *ngIf="isAddNew">Добавлено</div>
+    <div class="error-message" *ngIf="isErrorAddNew">Не удалось добавить</div>
   </div>
   <div class="button-container">
     <button type="submit">Добавить объявление</button>

@@ -11,7 +11,7 @@
             <div class="brand-container">
                 <div class="brand" *ngFor="let brand of brandArray" (click) = "getUserBrands(brand)">{{ brand }}</div>
                 <div class="brand" (click)="getAllBrands()">Очистить</div>
-                <div class="brand" (click)="getMyAnnouncements(myAnId)">Мои объявления</div>
+                <div class="brand" (click)="getMyAnnouncements()">Мои объявления</div>
             </div>
             
             <div class="an-container" *ngIf="!myAnnouncement; else myAn">

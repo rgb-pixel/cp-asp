@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    localStorage.setItem('currentUserInfo','');
   }
 
   public register(): void {

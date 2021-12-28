@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    localStorage.setItem('currentUserInfo','');
   }
 
   public login(): void {

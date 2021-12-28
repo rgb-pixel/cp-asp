@@ -44,8 +44,8 @@ export class UserAccountComponent implements OnInit {
   public isInvalidDelete: boolean = false;
   public isInvalidPut: boolean = false;
   public canAddAn: boolean = false;
-  
-
+  public isErrorAddNew: boolean = false;
+  public isAddNew: boolean = false;
 
   constructor(private resourceService: ResourceService,) { }
 
@@ -131,10 +131,12 @@ export class UserAccountComponent implements OnInit {
  
     console.log(car);
     this.resourceService.addNewAnnouncement(car).subscribe(()=>{
+      this.isAddNew = true;
     },
     error => {
     if (error) {
       this.isInvalidAdd = true;
+      this.isErrorAddNew = true;
     }
     });
   }

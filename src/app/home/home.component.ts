@@ -80,9 +80,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/announce']);
   }
 
-  public getMyAnnouncements(id: any){
+  public getMyAnnouncements(){
+    this.myAnId = localStorage.getItem('currentUserInfo');
     this.myAnnouncement = true;
-    this.resourceService.getMyAnnouncements(id).subscribe((data: any)=>
+    this.resourceService.getMyAnnouncements(this.myAnId).subscribe((data: any)=>
     this.myArray = data);
     
   }
