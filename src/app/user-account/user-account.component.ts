@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IUserInfo, IAnnouncement } from '../models/interfaces';
+import { IUserInfo, IAnnouncement, IFavorites } from '../models/interfaces';
 import { Router } from '@angular/router';
 import { ResourceService } from '../resource.service';
 import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
+import { sonnet } from '@cloudinary/url-gen/qualifiers/artisticFilter';
 
 
 
@@ -12,12 +13,17 @@ import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
   styleUrls: ['./user-account.component.scss']
 })
 export class UserAccountComponent implements OnInit {
+  public anId: any;
+  public brand:any;
+  public model:any;
+  public anInfoId: any;
   public username:any;
   public userid:any;
   public userIdInfo: any;
   public imgCar: any;
   public cloud: string = "cloud";
   public userInfoArray: Array<IUserInfo> = [];
+  public favoritesArray: Array<IFavorites> = [];
   public announcement: IAnnouncement = {
     id: 0, 
     brand: '',
@@ -30,6 +36,7 @@ export class UserAccountComponent implements OnInit {
     mileage: 0,
     anDescription: '',
     userPhone: '',
+    announcementStatus: 'activ',
     userInfoId: 0
   }
   public useraccountpage: IUserInfo = {
@@ -46,8 +53,10 @@ export class UserAccountComponent implements OnInit {
   public canAddAn: boolean = false;
   public isErrorAddNew: boolean = false;
   public isAddNew: boolean = false;
+  public canSeeFavorite: boolean = false;
 
-  constructor(private resourceService: ResourceService,) { }
+  constructor(private resourceService: ResourceService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.username = localStorage.getItem('user');
@@ -60,7 +69,10 @@ export class UserAccountComponent implements OnInit {
     this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
       this.userInfoArray = data;
       console.log(this.userInfoArray);
-      if(this.userInfoArray!=null)this.canAddAn = true;
+      if(this.userInfoArray!=null){
+        this.canAddAn = true;
+        this.canSeeFavorite = true;
+      }
     });      
     const cld = new Cloudinary({
       cloud: {
@@ -68,6 +80,14 @@ export class UserAccountComponent implements OnInit {
       }
     });  
     this.userIdInfo = localStorage.getItem('currentUserInfo');
+
+    this.resourceService.getFavorites(this.userIdInfo).subscribe((data:any)=>{
+      console.log(data);
+      this.favoritesArray = data;
+      console.log(this.favoritesArray);
+    });
+
+    
   }
   
 
@@ -87,6 +107,7 @@ export class UserAccountComponent implements OnInit {
     error => {
     if (error.status) {
       this.isInvalidAddInfo = true;
+      
     }
     });
 
@@ -95,10 +116,12 @@ export class UserAccountComponent implements OnInit {
         this.resourceService.getUserInfo(this.userid).subscribe((data: any)=>{
           this.userInfoArray = data;
           this.canAddAn = true;
+          this.canSeeFavorite = true;
         },error => {
           if (error) {
             this.userInfoArray = [];
             this.canAddAn = false;
+            this.canSeeFavorite = false;
           }
           });
       }, 2000);
@@ -126,6 +149,7 @@ export class UserAccountComponent implements OnInit {
       "Mileage": this.announcement.mileage,
       "AnDescription": this.announcement.anDescription,
       "UserPhone": this.announcement.userPhone,
+      "AnnouncementStatus": this.announcement.announcementStatus,
       "UserInfoId": this.userIdInfo
     }
  
@@ -166,11 +190,22 @@ export class UserAccountComponent implements OnInit {
           if (error) {
             this.userInfoArray = [];
             this.canAddAn = false;
+            this.canSeeFavorite = false;
           }
           });
       }, 1500);
 
-      
   }
+  public getAnnouncement(brandan:any, modelan:any): void{
+    // this.anId = this.favoritesArray;
+    this.brand = brandan;
+    this.model = modelan;
+    // this.anInfoId = aninfoid;
 
+    // localStorage.setItem('anid', this.anId);
+    localStorage.setItem('brand', this.brand);
+    localStorage.setItem('model', this.model);
+    // localStorage.setItem('anUserId', this.anInfoId);
+    this.router.navigate(['/announce']);
+  }
 }

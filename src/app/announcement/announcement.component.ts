@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourceService } from '../resource.service';
-import { IBrand, ILoginInform, IAnnouncement, IUserInfo } from '../models/interfaces';
+import { IBrand, ILoginInform, IAnnouncement, IUserInfo, IRecall } from '../models/interfaces';
 import {Subscription} from "rxjs";
 import { Router } from '@angular/router';
 import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen';
@@ -22,6 +22,14 @@ export class AnnouncementComponent implements OnInit {
   public AnArray: Array<IAnnouncement> = [];
   public aArray: Array<IAnnouncement> = [];
   public userInfo: Array<IUserInfo> = [];
+  public userInfoR: Array<IUserInfo> = [];
+  public recallArray: Array<IRecall> = [];
+  public userInfoRecall: IUserInfo ={
+    Id: 0,
+    userName: '',
+    userEmail: '',
+    city: '',
+  };
   public announcement: IAnnouncement= {
     id: 0, 
     brand: '',
@@ -34,6 +42,7 @@ export class AnnouncementComponent implements OnInit {
     mileage: 0,
     anDescription: '',
     userPhone: '',
+    announcementStatus: '',
     userInfoId: 0
   };
   isInvalidChange: boolean = false;
@@ -64,10 +73,19 @@ export class AnnouncementComponent implements OnInit {
     this.resourceService.getUsersInfo(this.anInfoId).subscribe((data: any)=>{
     this.userInfo = data; 
     });
+    this.resourceService.getUsersInfo(this.currentId).subscribe((data:any)=>{
+      this.userInfoR = data;
+    });
     if(this.role === 'admin') 
     {this.canChange = true;}
     else if(this.role === 'admin' || this.anInfoId == this.currentId){this.canChange = true}
     else {this.canChange = false}
+
+    this.resourceService.getRecall(this.anId).subscribe((data:any)=>{
+      this.recallArray = data;
+      console.log(this.recallArray);
+    })
+    
   }
 
   public eventClick(event: any){
@@ -108,8 +126,33 @@ export class AnnouncementComponent implements OnInit {
     );
   }
   public deleteAnnouncement(): void{
-    this.resourceService.deleteAnnouncement(this.anId).subscribe(()=>{
-    });
+    const car ={
+      "Id": this.anId,
+      "Brand": this.announcement.brand,
+      "Model": this.announcement.model,
+      "CarImage": this.announcement.carImage,
+      "Price": this.announcement.price,
+      "CarYear": this.announcement.carYear,
+      "TypeOfDriverUnit": this.announcement.typeOfDriverUnit,
+      "EngineCapacity": this.announcement.engineCapacity,
+      "Mileage": this.announcement.mileage,
+      "AnDescription": this.announcement.anDescription,
+      "UserPhone": this.announcement.userPhone,
+      "AnnouncementStatus": this.announcement.announcementStatus = 'del',
+      "UserInfoId": this.anInfoId
+    }
+    console.log(car);
+    this.resourceService.ChangeAnnouncement(car).subscribe(()=>{
+      this.isChange = true;
+    },
+      error => {
+      if (error) {
+        this.isInvalidChange = true;
+      }
+      }
+    );
+    // this.resourceService.deleteAnnouncement(this.anId).subscribe(()=>{
+    // });
     this.router.navigate(['*']);
   }
 
@@ -117,4 +160,25 @@ export class AnnouncementComponent implements OnInit {
     navigator.clipboard.writeText(unfoToClipBoard);
   }
   
+  public addToFavorites(){
+
+    const Recall = {
+      "UserName": this.userInfoR[0].userName,
+      "UserEmail": this.userInfoR[0].userEmail,
+      "City": this.userInfoR[0].city,
+      "AnnouncementId": this.anId
+    }
+    this.resourceService.addRecall(Recall).subscribe(()=>{});
+
+    const Favorites = {
+      "Brand": this.announcement.brand,
+      "Model": this.announcement.model,
+      "Price": this.announcement.price,
+      "UserInfoId": this.currentId,
+      "AnnouncementId": this.anId
+    }
+
+    this.resourceService.addFavorites(Favorites).subscribe(()=>{});
+  }
+
 }

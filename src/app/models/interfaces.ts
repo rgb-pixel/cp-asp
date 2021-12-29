@@ -44,9 +44,26 @@ export interface IAnnouncement{
   mileage: number;
   anDescription: string;
   userPhone: string;
-  userInfoId?: number
+  announcementStatus: string;
+  userInfoId?: number;
 }
 
 export interface IBrand{
   brand:string;
+}
+
+export interface IRecall{
+  Id: number;
+  userName: string;
+  userEmail: string;
+  city: string;
+  announcementId: number;
+}
+
+export interface IFavorites{
+  brand: string;
+  model: string;
+  price: number;
+  userInfoId: number;
+  announcementId: number;
 }

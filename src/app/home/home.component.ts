@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   public anInfoId: any;
   public myAnId: any;
   public myAnnouncement: boolean = false;
+  public activ: string = 'activ';
 
 
   
@@ -39,6 +40,8 @@ export class HomeComponent implements OnInit {
     }); 
     this.userid = localStorage.getItem('userid');
     this.myAnId = localStorage.getItem('currentUserInfo');
+    console.log(this.myAnId);
+    console.log(typeof(this.myAnId));
     
     this.resourceService.getBrands().subscribe((data: any)=>
     this.brandArray = data);
@@ -82,10 +85,14 @@ export class HomeComponent implements OnInit {
 
   public getMyAnnouncements(){
     this.myAnId = localStorage.getItem('currentUserInfo');
+    if(this.myAnId === ''){
+      this.myAnnouncement = false;
+    }
+    else{
     this.myAnnouncement = true;
     this.resourceService.getMyAnnouncements(this.myAnId).subscribe((data: any)=>
     this.myArray = data);
-    
+    }
   }
 
 }

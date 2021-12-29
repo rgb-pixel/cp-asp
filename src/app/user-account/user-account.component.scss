@@ -19,7 +19,8 @@
 .container{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 180px 0 180px;
     
 }
 .form-container{
@@ -77,4 +78,30 @@ button{
     background-color: lightcoral;
     text-align: center;
     border-radius: 20px;
+}
+
+.second{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 180px 0 180px;
+}
+
+.favorite{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    align-content: flex-start;
+    padding: 0 270px 0 0;
+}
+
+.favorite-card{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    cursor: pointer;
 }

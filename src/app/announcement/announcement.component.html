@@ -22,6 +22,7 @@
                       <div class="card">Почта: {{info.userEmail}} <img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(info.userEmail)" class="img-copy"></div>
                       <div class="card">Город: {{info.city}} </div>
                     </div>
+                    <button type="button" (click)="addToFavorites()">Добавить в избранное</button>
                 </div>
             </div>
             
@@ -48,6 +49,13 @@
                         <div class="card">Почта: {{info.userEmail}} <img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(info.userEmail)" class="img-copy"></div>
                         <div class="card">Город: {{info.city}} </div>
                       </div>
+                      <h3>Пользователи, которые добавили это объявление в избранное</h3>
+                      <div *ngFor="let recall of recallArray">
+                          <div>ФИО: {{ recall.userName }}</div>
+                          <div>Почта: {{ recall.userEmail }}</div>
+                          <div>Город: {{ recall.city }}</div>
+                          <hr>
+                      </div>
                     </div>
                         <h3>Изменить текущее объявление на:</h3>
                         <form ngNativeValidate class="form" (ngSubmit)="ChangeAnnouncement()">
@@ -62,7 +70,7 @@
                             </div>
                             <div class="input-field">
                               <label for="photo">Фотография: </label>
-                              <input class="photo" id="Photo" required placeholder="" type="file" name="Photo" (change)="eventClick($event)"/>
+                              <input class="photo" id="Photo" placeholder="" type="file" name="Photo" (change)="eventClick($event)"/>
                             </div>
                             <div class="input-field">
                               <label for="price">Цена (в рублях): </label>
@@ -78,7 +86,7 @@
                             </div>
                             <div class="input-field">
                               <label for="engineCapacity">Объем двигателя (в литрах): </label>
-                              <input id="EngineCapacity" required placeholder=""  type="number" min="1" max="6" step="0.1" name="EngineCapacity" [(ngModel)]="announcement.engineCapacity" />
+                              <input id="EngineCapacity" required placeholder=""  type="number" min="1" max="6" step="0.1" style="width: 171px;" name="EngineCapacity" [(ngModel)]="announcement.engineCapacity" />
                             </div>
                             <div class="input-field">
                               <label for="mileage">Пробег: </label>

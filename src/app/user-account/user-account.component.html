@@ -29,7 +29,7 @@
   </form>
 </div>
 <div class="info-container">
-  <h1>Ваша текушая информация</h1>
+  <h1>Ваша текушая информация:</h1>
     <div *ngFor="let userinf of userInfoArray">
       <div>ФИО: {{ userinf.userName }}</div>
       <div>Почта: {{ userinf.userEmail }}</div>
@@ -42,7 +42,7 @@
 </div>
 
 
-
+<div class="second">
 <div class="carform" *ngIf="canAddAn;else cantAdd">
 <h1>Добавление объявления</h1>
 <form ngNativeValidate class="form" (ngSubmit)="addAnnouncement()">
@@ -100,5 +100,13 @@
 <ng-template #cantAdd> 
   <div class="carform">Добавьте инофрмацию о себе</div>
 </ng-template>
+    <div class="favorite" *ngIf="canSeeFavorite">
+      <h1>Избранное:</h1>
+      <div *ngFor="let f of favoritesArray" (click)="getAnnouncement(f.brand, f.model)" class="favorite-card">
+        <div>{{f.brand}} {{f.model}} &nbsp;</div>
+        <div>{{f.price}} BYN</div>
+      </div>
+    </div>
+  </div>
 </div>
 </div>

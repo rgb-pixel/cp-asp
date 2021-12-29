@@ -8,7 +8,7 @@ import {shareReplay } from 'rxjs/operators'
 })
 export class ResourceService {
 
-  private api = 'https://localhost:44365';
+  private api = 'https://localhost:44398';
 
   constructor( private http: HttpClient ) { }
 
@@ -97,5 +97,20 @@ export class ResourceService {
   public getBrands() {
     return this.http.get(this.api + '/api/GetBrand');
   }
+  
+  public addRecall(dataR: any){
+    return this.http.post(this.api + '/api/Recalls', dataR);
+  }
 
+  public getRecall(dataR: any){
+    return this.http.get(this.api + '/api/Recalls/' + dataR);
+  }
+
+  public addFavorites(dataF: any){
+    return this.http.post(this.api + '/api/Favorites', dataF);
+  }
+
+  public getFavorites(dataF: any){
+    return this.http.get(this.api + '/api/Favorites/' + dataF);
+  }
 }
