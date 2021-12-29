@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   public myAnId: any;
   public myAnnouncement: boolean = false;
   public activ: string = 'activ';
+  public userRole: any;
 
 
   
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
     }); 
     this.userid = localStorage.getItem('userid');
     this.myAnId = localStorage.getItem('currentUserInfo');
+    this.userRole = localStorage.getItem('role');
     console.log(this.myAnId);
     console.log(typeof(this.myAnId));
     
