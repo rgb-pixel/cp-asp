@@ -102,7 +102,7 @@
 </ng-template>
     <div class="favorite" *ngIf="canSeeFavorite">
       <h1>Избранное:</h1>
-      <div *ngFor="let f of favoritesArray" (click)="getAnnouncement(f.brand, f.model)" class="favorite-card">
+      <div *ngFor="let f of favoritesArray" (click)="getAnnouncement(f.brand, f.model, f.id)" class="favorite-card">
         <div>{{f.brand}} {{f.model}} &nbsp;</div>
         <div>{{f.price}} BYN</div>
       </div>

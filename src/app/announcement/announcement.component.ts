@@ -18,6 +18,7 @@ export class AnnouncementComponent implements OnInit {
   public currentId: any;
   public brand: any;
   public model: any;
+  public favoriteId: any;
   public canChange: boolean = false;
   public AnArray: Array<IAnnouncement> = [];
   public aArray: Array<IAnnouncement> = [];
@@ -47,6 +48,10 @@ export class AnnouncementComponent implements OnInit {
   };
   isInvalidChange: boolean = false;
   isChange: boolean = false;
+  isAddNew: boolean = false;
+  isErrorAddNew: boolean = false;
+  isDelFavorite: boolean = false;
+  isNoDelFavorite: boolean = false;
 
   constructor(private resourceService: ResourceService,
     private router: Router) { }
@@ -168,7 +173,14 @@ export class AnnouncementComponent implements OnInit {
       "City": this.userInfoR[0].city,
       "AnnouncementId": this.anId
     }
-    this.resourceService.addRecall(Recall).subscribe(()=>{});
+    this.resourceService.addRecall(Recall).subscribe(()=>{
+      this.isAddNew = true;
+    },error => {
+      if (error) {
+        this.isAddNew = false;
+        this.isErrorAddNew = true;
+      }
+      });
 
     const Favorites = {
       "Brand": this.announcement.brand,
@@ -179,6 +191,18 @@ export class AnnouncementComponent implements OnInit {
     }
 
     this.resourceService.addFavorites(Favorites).subscribe(()=>{});
+  }
+  
+  public delFromFavorites(){
+    this.favoriteId = localStorage.getItem('favoriteId');
+    this.resourceService.deleteFavorites(this.favoriteId).subscribe(()=>{
+      this.isDelFavorite = true;
+    },
+    error => {
+    if (error) {
+      this.isNoDelFavorite = true;
+    }
+    });
   }
 
 }

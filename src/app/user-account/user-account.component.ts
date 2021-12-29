@@ -196,13 +196,15 @@ export class UserAccountComponent implements OnInit {
       }, 1500);
 
   }
-  public getAnnouncement(brandan:any, modelan:any): void{
+  public getAnnouncement(brandan:any, modelan:any, id:any): void{
+
     // this.anId = this.favoritesArray;
     this.brand = brandan;
     this.model = modelan;
     // this.anInfoId = aninfoid;
 
     // localStorage.setItem('anid', this.anId);
+    localStorage.setItem('favoriteId', id);
     localStorage.setItem('brand', this.brand);
     localStorage.setItem('model', this.model);
     // localStorage.setItem('anUserId', this.anInfoId);

@@ -16,14 +16,14 @@
             
             <div class="an-container" *ngIf="!myAnnouncement; else myAn">
                 <div  *ngFor="let an of AnArray" (click)="getAnnouncement(an.id, an.brand, an.model, an.userInfoId)">
-                    <div *ngIf="an.announcementStatus === activ; else noAn" class="card">
+                    <div *ngIf="an.announcementStatus === activ" class="card">
                         <div>{{ an.brand }}  {{ an.model }} </div>
                         <div>{{ an.price }} BYN</div>
                     </div>
-                    <ng-template #noAn>
+                    <!-- <ng-template #noAn>
                         <div>{{ an.brand }}  {{ an.model }} </div>
                         <div>{{ an.price }} BYN</div>
-                    </ng-template>
+                    </ng-template> -->
                 </div>
             </div>
             <ng-template #myAn >

@@ -77,7 +77,8 @@ h1{
 }
 .an-container{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    gap: 0px;
     flex-direction: row;
     flex-wrap: wrap;
     max-height: auto;
@@ -96,6 +97,7 @@ h1{
     margin-top: 30px;
     cursor: pointer;
     border-radius: 10px 10px 10px 10px;
+    
 }
 
 .none{

@@ -23,6 +23,11 @@
                       <div class="card">Город: {{info.city}} </div>
                     </div>
                     <button type="button" (click)="addToFavorites()">Добавить в избранное</button>
+                    <div class="noerror-message" *ngIf="isAddNew">Добавлено</div>
+                    <div class="error-message" *ngIf="isErrorAddNew">Не удалось добавить</div>
+                    <button type="button" (click)="delFromFavorites()">Удалить из избранного</button>
+                    <div class="noerror-message" *ngIf="isDelFavorite">Удалено</div>
+                    <div class="error-message" *ngIf="isNoDelFavorite">Не удалось удалить</div>
                 </div>
             </div>
             

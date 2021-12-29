@@ -61,6 +61,7 @@ export interface IRecall{
 }
 
 export interface IFavorites{
+  id:number;
   brand: string;
   model: string;
   price: number;

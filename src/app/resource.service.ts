@@ -113,4 +113,8 @@ export class ResourceService {
   public getFavorites(dataF: any){
     return this.http.get(this.api + '/api/Favorites/' + dataF);
   }
+  
+  public deleteFavorites(dataF: any){
+    return this.http.delete(this.api + '/api/Favorites/' + dataF);
+  }
 }
