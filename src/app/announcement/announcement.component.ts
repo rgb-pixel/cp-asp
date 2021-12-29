@@ -166,22 +166,6 @@ export class AnnouncementComponent implements OnInit {
   }
   
   public addToFavorites(){
-
-    const Recall = {
-      "UserName": this.userInfoR[0].userName,
-      "UserEmail": this.userInfoR[0].userEmail,
-      "City": this.userInfoR[0].city,
-      "AnnouncementId": this.anId
-    }
-    this.resourceService.addRecall(Recall).subscribe(()=>{
-      this.isAddNew = true;
-    },error => {
-      if (error) {
-        this.isAddNew = false;
-        this.isErrorAddNew = true;
-      }
-      });
-
     const Favorites = {
       "Brand": this.announcement.brand,
       "Model": this.announcement.model,
@@ -190,7 +174,26 @@ export class AnnouncementComponent implements OnInit {
       "AnnouncementId": this.anId
     }
 
-    this.resourceService.addFavorites(Favorites).subscribe(()=>{});
+    const Recall = {
+      "UserName": this.userInfoR[0].userName,
+      "UserEmail": this.userInfoR[0].userEmail,
+      "City": this.userInfoR[0].city,
+      "AnnouncementId": this.anId
+    }
+    
+
+    
+
+    this.resourceService.addFavorites(Favorites).subscribe(()=>{
+      this.isAddNew = true;
+      this.resourceService.addRecall(Recall).subscribe(()=>{
+    });
+    },error => {
+      if (error) {
+        this.isAddNew = false;
+        this.isErrorAddNew = true;
+      }
+      });
   }
   
   public delFromFavorites(){
@@ -203,6 +206,7 @@ export class AnnouncementComponent implements OnInit {
       this.isNoDelFavorite = true;
     }
     });
+    this.resourceService.deleteRecall(this.anId).subscribe(()=>{});
   }
 
 }

@@ -33,6 +33,7 @@
             
               <ng-template #adminForm>
                 <div class="form-container" *ngFor="let a of AnArray">
+                  <h1 *ngIf="a.announcementStatus === 'del'">Объявление удалено </h1>
                   <h1>Объявление о продаже {{brand}} {{model}}</h1>
                   <div class="before-container">
                       <h3>Текущее объявление:</h3>
@@ -54,7 +55,7 @@
                         <div class="card">Почта: {{info.userEmail}} <img src="/assets/icons/copy.png" alt="" (click)="copyToClipBoard(info.userEmail)" class="img-copy"></div>
                         <div class="card">Город: {{info.city}} </div>
                       </div>
-                      <h3>Пользователи, которые добавили это объявление в избранное</h3>
+                      <h3>Пользователи, которые добавили это объявление в избранное:</h3>
                       <div *ngFor="let recall of recallArray">
                           <div>ФИО: {{ recall.userName }}</div>
                           <div>Почта: {{ recall.userEmail }}</div>

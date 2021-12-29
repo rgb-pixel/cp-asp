@@ -106,6 +106,10 @@ export class ResourceService {
     return this.http.get(this.api + '/api/Recalls/' + dataR);
   }
 
+  public deleteRecall(dataF: any){
+    return this.http.delete(this.api + '/api/Recalls/' + dataF);
+  }
+
   public addFavorites(dataF: any){
     return this.http.post(this.api + '/api/Favorites', dataF);
   }
